@@ -45,7 +45,7 @@ public class User  implements java.io.Serializable {
        this.parents = parents;
     }
    
-    
+    @Id
     @Column(name="id", unique=true, nullable=false)
     public int getId() {
         return this.id;
