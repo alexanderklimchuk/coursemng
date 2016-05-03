@@ -1,0 +1,20 @@
+<head lang="en">
+<meta charset="utf-8">
+</head>
+<a ui-sref="newTrainer" class="btn-primary btn-lg nodecoration">Добавить
+	преподавателя</a>
+<table class="table trainers">
+	<tr>
+		<td><h3>Преподаватели</h3></td>
+		<td></td>
+	</tr>
+	<tr ng-repeat="trainer in trainers">
+		<td>{{trainer.lastname}}</td>
+		<td>{{trainer.firstname}}</td>
+		<td>{{trainer.patronomic}}</td>
+		<td><a class="btn btn-primary"
+			ui-sref="viewTrainer({id:trainer.id})">Просмотр</a> <a
+			class="btn btn-danger" ng-click="deleteTrainer(trainer)">Удаление</a>
+		</td>
+	</tr>
+</table>

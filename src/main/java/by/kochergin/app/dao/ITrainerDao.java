@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import by.kochergin.app.domain.Trainer;
 @Repository
-public interface TrainerDao extends CrudRepository<Trainer, Integer> {
+public interface ITrainerDao extends CrudRepository<Trainer, Integer> {
 
 }

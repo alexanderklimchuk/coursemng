@@ -1,29 +1,23 @@
 package by.kochergin.app.service;
 
-import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import by.kochergin.app.dao.CourseDao;
+import by.kochergin.app.dao.ICourseDao;
 import by.kochergin.app.domain.*;
 
 @Service
-public class CourseService {
+public class CourseService extends GenericService<Course, Integer, ICourseDao> {
 
 	@Autowired
-	private CourseDao dao;
+	private ICourseDao dao;
 
-	public List<Course> getCourses() {
-		return (List<Course>) dao.findAll();
-	}
-
-	public CourseDao getDao() {
-		return dao;
-	}
-
-	public void setDao(CourseDao dao) {
-		this.dao = dao;
+	@PostConstruct
+	public void init() {
+		setDao(dao);
 	}
 
 }

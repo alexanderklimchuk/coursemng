@@ -5,16 +5,18 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import by.kochergin.app.dao.ITrainerDao;
-import by.kochergin.app.domain.*;
+import by.kochergin.app.dao.IChildDao;
+import by.kochergin.app.domain.Child;
 
 @Service
-public class TrainerService extends GenericService<Trainer, Integer, ITrainerDao> {
+public class ChildService extends GenericService<Child, Integer, IChildDao> {
 	@Autowired
-	private ITrainerDao dao;
+	private IChildDao dao;
 
 	@PostConstruct
-	public void setDao() {
+	void initDao() {
 		setDao(dao);
 	}
+
+	
 }

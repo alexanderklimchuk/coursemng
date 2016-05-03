@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import by.kochergin.app.domain.*;
 @Repository
-public interface CourseDao extends CrudRepository<Course, Integer> {
+public interface ICourseDao extends CrudRepository<Course, Integer> {
 
 }

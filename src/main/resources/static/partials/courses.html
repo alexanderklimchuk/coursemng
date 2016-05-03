@@ -1,0 +1,17 @@
+<head lang="en">
+<meta charset="utf-8">
+</head>
+<a ui-sref="newTrainer" class="btn-primary btn-lg nodecoration">Добавить курс</a>
+<table class="table courses">
+	<tr>
+		<td><h3>Курсы</h3></td>
+		<td></td>
+	</tr>
+	<tr ng-repeat="course in courses">
+		<td>{{course.name}}</td>
+		<td><a class="btn btn-primary"
+			ui-sref="viewCourse({id:course.id})">Просмотр</a> <a
+			class="btn btn-danger" ng-click="deleteCourse(course)">Удаление</a>
+		</td>
+	</tr>
+</table>

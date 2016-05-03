@@ -7,8 +7,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -25,6 +29,7 @@ public class Trainer implements java.io.Serializable {
 
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -36,8 +41,12 @@ public class Trainer implements java.io.Serializable {
 	private String patronomic;
 	@Column(name = "lastname", nullable = false, length = 45)
 	private String lastname;
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "trainer")
+	//@JsonIgnore
+	//@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "trainer")
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "Course_has_Trainer", joinColumns = {
+			@JoinColumn(name = "Trainer_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "Course_id", nullable = false, updatable = false) })
 	private Set<Course> courses = new HashSet<Course>(0);
 
 	public Trainer() {
