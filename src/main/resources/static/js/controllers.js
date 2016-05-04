@@ -8,7 +8,7 @@ angular.module('courseApp.controllers',[]).controller('TrainerListController',fu
     $scope.deleteTrainer=function(trainer){
         if(popupService.showPopup('Really delete this?')){
             trainer.$delete(function(){
-                //$window.location.href='';
+            	$scope.trainers=Trainer.query();
             	$state.go('trainers');
             });
         }
@@ -30,10 +30,19 @@ angular.module('courseApp.controllers',[]).controller('TrainerListController',fu
 
 }).controller('TrainerEditController',function($scope,$state,$stateParams,Trainer){
 
-    $scope.updateTrainer=function(){
-        $scope.trainer.$update(function(){
+	
+    $scope.updateTrainer=function(trainer){
+   
+/*    $scope.entry = Trainer.get({ id: $stateParams.id}, function() {
+    		  // $scope.entry is fetched from server and is an instance of Entry
+    		  $scope.entry.$Update(function() {
+    		    //updated in the backend
+    		  });
+    		});*/
+    	$scope.trainer.$Update(function(){
             $state.go('trainers');
         });
+ 
     };
 
     $scope.loadTrainer=function(){

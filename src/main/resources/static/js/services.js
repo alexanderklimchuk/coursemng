@@ -7,10 +7,11 @@ angular.module('courseApp.services', []).factory('Trainer',
 			return $resource('/trainer/:id', 
 					{id : '@id'},
 			{
-				update : {
+				'update' : {
 					method : 'PUT'
 				},
-				delete : {method: 'DELETE'
+				'delete' : {
+					method: 'DELETE'
 				}
 			});
 		}).service('popupService', function($window) {

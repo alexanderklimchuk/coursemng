@@ -28,6 +28,11 @@ public class TrainerController {
 	public @ResponseBody Trainer create(@RequestBody Trainer trainer) {
 		return trainerService.create(trainer);
 	}
+	
+	@RequestMapping(value = "/trainer/{id}", method = RequestMethod.PUT)
+	public @ResponseBody Trainer update(@RequestBody Trainer trainer) {
+		return trainerService.update(trainer);
+	}
 
 	@RequestMapping(value = "/trainer/{id}", method = RequestMethod.GET)
 	public @ResponseBody Trainer get(@PathVariable("id") Integer id) {
