@@ -20,7 +20,7 @@ USE `mydb` ;
 CREATE TABLE IF NOT EXISTS `mydb`.`ClientStatus` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `discountPercent` DECIMAL NOT NULL,
+  `discountPercent` DECIMAL NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -29,7 +29,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`User`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`User` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   `isActve` BIT NULL DEFAULT 1,
@@ -48,13 +48,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Parent` (
   `address` VARCHAR(255) NULL,
   `phone` VARCHAR(45) NULL,
   `mphone` VARCHAR(45) NULL,
-  `ClientStatus_id` INT NOT NULL,
-  `User_id` INT NOT NULL,
+  `client_status_id` INT NULL DEFAULT 2,
+  `User_id` INT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Parent_ClientStatus1_idx` (`ClientStatus_id` ASC),
+  INDEX `fk_Parent_ClientStatus1_idx` (`client_status_id` ASC),
   INDEX `fk_Parent_User1_idx` (`User_id` ASC),
   CONSTRAINT `fk_Parent_ClientStatus1`
-    FOREIGN KEY (`ClientStatus_id`)
+    FOREIGN KEY (`client_status_id`)
     REFERENCES `mydb`.`ClientStatus` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -75,8 +75,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Child` (
   `patronomic` VARCHAR(45) NULL,
   `lastname` VARCHAR(120) NOT NULL,
   `dob` DATE NOT NULL,
-  `childrenGardenMember` TINYINT(1) NOT NULL,
-  `canSpeak` TINYINT(1) NOT NULL DEFAULT 1,
+  `childrenGardenMember` TINYINT(1) NOT NULL DEFAULT 0,
+  `canSpeak` TINYINT(1) NOT NULL DEFAULT 0,
   `hasSpeachIssues` BIT NULL DEFAULT 0,
   `Parent_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -93,7 +93,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`DiscountCard`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`DiscountCard` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `number` VARCHAR(45) NULL,
   `balance` INT NULL,
   `Parent_id` INT NOT NULL,
@@ -108,38 +108,12 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Trainer`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Trainer` (
-  `id` INT NOT NULL,
-  `firstname` VARCHAR(45) NOT NULL,
-  `patronomic` VARCHAR(45) NOT NULL,
-  `lastname` VARCHAR(45) NOT NULL,
-  `User_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_Trainer_User1_idx` (`User_id` ASC),
-  CONSTRAINT `fk_Trainer_User1`
-    FOREIGN KEY (`User_id`)
-    REFERENCES `mydb`.`User` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `mydb`.`Course`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Course` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `Trainer_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_Course_Trainer1_idx` (`Trainer_id` ASC),
-  CONSTRAINT `fk_Course_Trainer1`
-    FOREIGN KEY (`Trainer_id`)
-    REFERENCES `mydb`.`Trainer` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -147,7 +121,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Payment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Payment` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `date` DATE NOT NULL,
   `amount` DECIMAL NOT NULL,
   `Course_id` INT NOT NULL,
@@ -163,6 +137,28 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Payment` (
   CONSTRAINT `fk_Payment_Child1`
     FOREIGN KEY (`Child_id`)
     REFERENCES `mydb`.`Child` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Trainer`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Trainer` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `firstname` VARCHAR(45) NOT NULL,
+  `patronomic` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45) NOT NULL,
+  `User_id` INT NULL,
+  `dob` DATE NOT NULL,
+  `education` VARCHAR(200) NOT NULL,
+  `address` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Trainer_User1_idx` (`User_id` ASC),
+  CONSTRAINT `fk_Trainer_User1`
+    FOREIGN KEY (`User_id`)
+    REFERENCES `mydb`.`User` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -194,7 +190,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Attendency`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Attendency` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Course_id` INT NOT NULL,
   `date` DATE NOT NULL,
   `Child_id` INT NOT NULL,
@@ -209,6 +205,28 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Attendency` (
   CONSTRAINT `fk_Attendency_Child1`
     FOREIGN KEY (`Child_id`)
     REFERENCES `mydb`.`Child` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Course_has_Trainer`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Course_has_Trainer` (
+  `Course_id` INT NOT NULL,
+  `Trainer_id` INT NOT NULL,
+  PRIMARY KEY (`Course_id`, `Trainer_id`),
+  INDEX `fk_Course_has_Trainer_Trainer1_idx` (`Trainer_id` ASC),
+  INDEX `fk_Course_has_Trainer_Course1_idx` (`Course_id` ASC),
+  CONSTRAINT `fk_Course_has_Trainer_Course1`
+    FOREIGN KEY (`Course_id`)
+    REFERENCES `mydb`.`Course` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Course_has_Trainer_Trainer1`
+    FOREIGN KEY (`Trainer_id`)
+    REFERENCES `mydb`.`Trainer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
