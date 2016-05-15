@@ -31,7 +31,7 @@ public class Child implements java.io.Serializable {
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "id", unique = true, nullable = false)
 	private Integer id;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Parent_id", nullable = false)
 	private Parent parent;
 	@Column(name = "firstname", nullable = false, length = 120)
@@ -48,12 +48,12 @@ public class Child implements java.io.Serializable {
 	@Column(name = "canSpeak", nullable = false)
 	private boolean canSpeak;
 	private Boolean hasSpeachIssues;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "child_course", catalog = "mydb", joinColumns = {
 			@JoinColumn(name = "Child_id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "Course_id", nullable = false, updatable = false) })
 	private Set<Course> courses = new HashSet<Course>(0);
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "child")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "child")
 	private Set<Attendency> attendencies = new HashSet<Attendency>(0);
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "child")
 	private Set<Payment> payments = new HashSet<Payment>(0);

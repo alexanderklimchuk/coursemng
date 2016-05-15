@@ -1,0 +1,48 @@
+<head lang="en">
+<meta charset="utf-8">
+</head>
+<table class="table parenttable">
+	<tr>
+		<td><h3>Данные родителя</h3></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Фамилия</td>
+		<td>{{parent.lastname}}</td>
+	</tr>
+
+	<tr>
+		<td>Имя</td>
+		<td>{{parent.firstname}}</td>
+	</tr>
+
+	<tr>
+		<td>Отчество</td>
+		<td>{{parent.patronomic}}</td>
+	</tr>
+
+	<tr>
+		<td>Адрес</td>
+		<td>{{parent.address}}</td>
+	</tr>
+
+	<tr>
+		<td>Телефон</td>
+		<td>{{parent.phone}}</td>
+	</tr>
+
+	<tr>
+		<td>Моб. Телефон</td>
+		<td>{{parent.mphone}}</td>
+	</tr>
+
+	<tr>
+		<td>Статус клиента</td>
+		<td>{{parent.clientstatus.name}}, скидка
+			{{parent.clientstatus.discountPercent}} %</td>
+	</tr>
+</table>
+
+<div>
+	<a class="btn btn-primary" ui-sref="editParent({id:parent.id})">Редактировать</a>
+</div>

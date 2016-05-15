@@ -1,0 +1,20 @@
+<head lang="en">
+<meta charset="utf-8">
+</head>
+<a ui-sref="addParent" class="btn-primary btn-lg nodecoration">Добавить
+	родителя</a>
+<table class="table parents">
+	<tr>
+		<td><h3>Родители</h3></td>
+		<td></td>
+	</tr>
+	<tr ng-repeat="parent in parents">
+		<td>{{parent.lastname}}</td>
+		<td>{{parent.firstname}}</td>
+		<td>{{parent.patronomic}}</td>
+		<td><a class="btn btn-primary"
+			ui-sref="viewParent({id:parent.id})">Просмотр</a> <a
+			class="btn btn-danger" ng-click="deleteParent(parent)">Удаление</a>
+		</td>
+	</tr>
+</table>

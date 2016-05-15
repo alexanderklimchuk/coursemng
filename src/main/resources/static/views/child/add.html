@@ -1,0 +1,77 @@
+<head lang="en">
+<meta charset="utf-8">
+</head>
+
+<form class="form-horizontal" role="form" ng-submit="addChild()">
+
+	<div class="form-group">
+		<label for="lastname" class="col-sm-2 control-label">Фамилия</label>
+		<div class="col-sm-10">
+			<input type="text" ng-model="child.lastname" class="form-control"
+				id="lastname" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="firstname" class="col-sm-2 control-label">Имя</label>
+		<div class="col-sm-10">
+			<input type="text" ng-model="child.firstname" class="form-control"
+				id="firstname" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="patronomic" class="col-sm-2 control-label">Отчество</label>
+		<div class="col-sm-10">
+			<input type="text" ng-model="child.patronomic" class="form-control"
+				id="patronomic" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="parent" class="col-sm-2 control-label">Родитель</label>
+		<div class="col-sm-10">
+			<select ng-model="child.parent"
+				ng-options="parent.firstname + ' ' + parent.lastname for parent in parents">
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="dob" class="col-sm-2 control-label">Дата рождения</label>
+		<div class="col-sm-10">
+			<input type="date" ng-model="child.dob" class="form-control" id="dob" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="childreGardenMemeber" class="col-sm-2 control-label">Посещает
+			детсад</label>
+		<div class="col-sm-10">
+			<input type="checkbox" ng-model="child.childrenGardenMember"
+				class="form-control" id="childreGardenMemeber" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="canSpeak" class="col-sm-2 control-label">Может
+			говорить</label>
+		<div class="col-sm-10">
+			<input type="checkbox" ng-model="child.canSpeak" class="form-control"
+				id="canSpeak" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="hasSpeachIssues" class="col-sm-2 control-label">Есть
+			проблемы с речью</label>
+		<div class="col-sm-10">
+			<input type="checkbox" ng-model="child.hasSpeachIssues"
+				class="form-control" id="hasSpeachIssues" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<input type="submit" class="btn btn-primary" value="Save" />
+		</div>
+	</div>
+</form>

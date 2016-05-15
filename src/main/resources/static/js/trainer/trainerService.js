@@ -1,13 +1,13 @@
-angular.module('courseApp.services').factory('Trainer',
+angular.module('courseApp.trainerServices', []).factory('Trainer',
 		function($resource) {
-			return $resource('/trainer/:id', 
-					{id : '@id'},
-			{
+			return $resource('/trainer/:id', {
+				id : '@id'
+			}, {
 				Update : {
 					method : 'PUT'
 				},
 				Delete : {
-					method: 'DELETE'
+					method : 'DELETE'
 				}
 			});
 		}).service('popupService', function($window) {

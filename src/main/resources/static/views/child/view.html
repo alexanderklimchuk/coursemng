@@ -1,0 +1,56 @@
+<head lang="en">
+<meta charset="utf-8">
+</head>
+<table class="table coursetable">
+	<tr>
+		<td><h3>Данные ребенка</h3></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Фамилия</td>
+		<td>{{child.lastname}}</td>
+	</tr>
+
+	<tr>
+		<td>Имя</td>
+		<td>{{child.firstname}}</td>
+	</tr>
+	<tr>
+		<td>Отчество</td>
+		<td>{{child.patronomic}}</td>
+	</tr>
+
+	<tr>
+		<td>Родитель</td>
+		<td>{{child.parent.lastname}} {{child.parent.firstname}}
+			{{child.parent.patronomic}}</td>
+	</tr>
+
+	<tr>
+		<td>Дата рождения</td>
+		<td>{{child.dob}}</td>
+	</tr>
+
+	<tr>
+		<td>Посещает детсад</td>
+		<td><input type="checkbox" ng-model="child.childrenGardenMember"
+			class="form-control" id="childrenGardenMemeber" disabled="disabled" /></td>
+	</tr>
+
+	<tr>
+		<td>Может говорить</td>
+		<td><input type="checkbox" ng-model="child.canSpeak"
+			class="form-control" id="childrenGardenMemeber" disabled="disabled" /></td>
+	</tr>
+
+	<tr>
+		<td>Есть проблемы с речью</td>
+		<td><input type="checkbox" ng-model="child.hasSpeachIssues"
+			class="form-control" id="childrenGardenMemeber" disabled="disabled" /></td>
+	</tr>
+
+</table>
+
+<div>
+	<a class="btn btn-primary" ui-sref="editChild({id:child.id})">Редактировать</a>
+</div>
