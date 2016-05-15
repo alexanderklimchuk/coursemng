@@ -8,21 +8,44 @@
 		<label for="lastname" class="col-sm-2 control-label">Фамилия</label>
 		<div class="col-sm-10">
 			<input type="text" ng-model="trainer.lastname" class="form-control"
-				id="lastname" placeholder="Фамилия?" />
+				id="lastname" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="firstname" class="col-sm-2 control-label">Имя</label>
-			<div class="col-sm-10">
-				<input type="text" ng-model="trainer.firstname" class="form-control"
-					id="firstname" placeholder="Имя?" />
-			</div>
+		<div class="col-sm-10">
+			<input type="text" ng-model="trainer.firstname" class="form-control"
+				id="firstname" />
+		</div>
 	</div>
 	<div class="form-group">
 		<label for="patronomic" class="col-sm-2 control-label">Отчество</label>
 		<div class="col-sm-10">
 			<input type="text" ng-model="trainer.patronomic" class="form-control"
-				id="patronomic" placeholder="Отчество?" />
+				id="patronomic" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="dob" class="col-sm-2 control-label">Дата Рождения1</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="trainer.dob" id="dob"/>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="education" class="col-sm-2 control-label">Образование</label>
+		<div class="col-sm-10">
+			<input type="text" ng-model="trainer.education" class="form-control"
+				id="education" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="address" class="col-sm-2 control-label">Адрес</label>
+		<div class="col-sm-10">
+			<input type="text" ng-model="trainer.address" class="form-control"
+				id="address" />
 		</div>
 	</div>
 
@@ -31,7 +54,4 @@
 			<input type="submit" class="btn btn-primary" value="Save" />
 		</div>
 	</div>
-</form>
-
-
 </form>
