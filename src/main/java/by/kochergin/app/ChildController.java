@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.kochergin.app.domain.Child;
-import by.kochergin.app.domain.Parent;
 import by.kochergin.app.service.ChildService;
 
 @RestController
@@ -31,7 +29,7 @@ public class ChildController {
 		return service.create(child);
 	}
 
-	@RequestMapping(value = "/child", method = RequestMethod.PUT)
+	@RequestMapping(value = "/child/{id}", method = RequestMethod.PUT)
 	public @ResponseBody Child update(Child child) {
 		return service.update(child);
 	}

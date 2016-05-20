@@ -1,5 +1,6 @@
 angular.module('courseApp.childControllers', []).controller(
-		'ChildListController', function($scope, $state, $window, Child) {
+		'ChildListController',
+		function($scope, $state, $window, Child, uibDateParser) {
 			$scope.children = Child.query();
 			$scope.deleteChild = function(child) {
 
@@ -9,11 +10,30 @@ angular.module('courseApp.childControllers', []).controller(
 				});
 			}
 		}).controller('ChildCreateController',
-		function($scope, $state, $stateParams, Child, Parent) {
+		function($scope, $state, $stateParams, uibDateParser, Child, Parent) {
+
+			$scope.open1 = function() {
+				$scope.popup1.opened = true;
+			};
+
+			$scope.open2 = function() {
+				$scope.popup2.opened = true;
+			};
+
+			$scope.popup1 = {
+				opened : false
+			};
+
+			$scope.popup2 = {
+				opened : false
+			};
+			$scope.open2 = function() {
+				$scope.popup2.opened = true;
+			};
 
 			$scope.child = new Child();
 			$scope.parents = Parent.query();
-			
+
 			$scope.addChild = function() {
 				$scope.child.$save(function() {
 					$state.go('children');
@@ -27,8 +47,28 @@ angular.module('courseApp.childControllers', []).controller(
 			});
 
 		}).controller('ChildEditController',
-		function($scope, $state, $stateParams, Child) {
+		function($scope, $state, uibDateParser, $stateParams, Child, Parent) {
 
+			$scope.open1 = function() {
+				$scope.popup1.opened = true;
+			};
+
+			$scope.open2 = function() {
+				$scope.popup2.opened = true;
+			};
+
+			$scope.popup1 = {
+				opened : false
+			};
+
+			$scope.popup2 = {
+				opened : false
+			};
+			$scope.open2 = function() {
+				$scope.popup2.opened = true;
+			};
+
+			$scope.parents = Parent.query();
 			$scope.updateChild = function(child) {
 				$scope.child.$Update(function() {
 					$state.go('children');

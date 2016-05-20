@@ -2,7 +2,7 @@
  * Created by Sandeep on 01/06/14.
  */
 
-angular.module('courseApp', [ 'ui.router', 'ngResource',
+angular.module('courseApp', [ 'ngAnimate', 'ui.bootstrap', 'ui.router', 'ngResource',
 		'courseApp.trainerControllers', 'courseApp.trainerServices',
 		'courseApp.courseServices', 'courseApp.courseControllers',
 		'courseApp.childControllers', 'courseApp.childServices',
