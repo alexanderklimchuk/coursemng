@@ -1,8 +1,7 @@
 <head lang="en">
 <meta charset="utf-8">
 </head>
-<a ui-sref="newChild" class="btn-primary btn-lg nodecoration">Добавить
-	ребенка</a>
+
 <table class="table children">
 	<tr>
 		<td><h3>Дети</h3></td>
@@ -12,9 +11,11 @@
 		<td>{{child.lastname}}</td>
 		<td>{{child.firstname}}</td>
 		<td>{{child.patronomic}}</td>
-		<td><a class="btn btn-primary"
-			ui-sref="viewChild({id:child.id})">Просмотр</a> <a
-			class="btn btn-danger" ng-click="deleteChild(child)">Удаление</a>
+		<td><a class="btn btn-primary" ui-sref="viewChild({id:child.id})">Просмотр</a>
+			<a class="btn btn-danger" ng-click="deleteChild(child)">Удаление</a>
 		</td>
 	</tr>
 </table>
+
+<a ui-sref="newChild" class="btn-primary btn-lg nodecoration">Добавить
+	ребенка</a>

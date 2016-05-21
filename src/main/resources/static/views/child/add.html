@@ -2,30 +2,35 @@
 <meta charset="utf-8">
 </head>
 
-<form class="form-horizontal" role="form" ng-submit="addChild()">
+<form id="myForm" class="form-horizontal" role="form" ng-submit="addChild()">
 
 	<div class="form-group">
 		<label for="lastname" class="col-sm-2 control-label">Фамилия</label>
 		<div class="col-sm-10">
 			<input type="text" ng-model="child.lastname" class="form-control"
-				id="lastname" />
+				id="lastname" required/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="firstname" class="col-sm-2 control-label">Имя</label>
 		<div class="col-sm-10">
 			<input type="text" ng-model="child.firstname" class="form-control"
-				id="firstname" />
+				id="firstname" required/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="patronomic" class="col-sm-2 control-label">Отчество</label>
 		<div class="col-sm-10">
 			<input type="text" ng-model="child.patronomic" class="form-control"
-				id="patronomic" />
+				id="patronomic" required/>
 		</div>
 	</div>
-
+	<div class="form-group">
+	<input type="file" ngf-select ng-model="picFile" name="file"    
+             accept="image/*" ngf-max-size="2MB" required
+             ngf-model-invalid="errorFile">
+             <img ng-show="myForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Удалить</button>
+	</div>
 	<div class="form-group">
 		<label for="parent" class="col-sm-2 control-label">Родитель</label>
 		<div class="col-sm-10">
@@ -52,11 +57,11 @@
 	</div>
 
 	<div class="form-group">
-		<label for="childreGardenMemeber" class="col-sm-2 control-label">Посещает
+		<label for="childrenGardenMemeber" class="col-sm-2 control-label">Посещает
 			детсад</label>
 		<div class="col-sm-10">
 			<input type="checkbox" ng-model="child.childrenGardenMember"
-				class="form-control" id="childreGardenMemeber" />
+				class="form-control" id="childrenGardenMemeber" />
 		</div>
 	</div>
 

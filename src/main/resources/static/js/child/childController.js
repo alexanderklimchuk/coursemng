@@ -47,9 +47,25 @@ angular.module('courseApp.childControllers', []).controller(
 			});
 
 		}).controller('ChildEditController',
-		function($scope, $state, uibDateParser, $stateParams, Child, Parent) {
+		function($scope, $state, $stateParams, Child, Parent) {
 
-			$scope.open1 = function() {
+			$scope.parents = Parent.query();
+			
+			$scope.updateChild = function(child) {
+				$scope.child.$Update(function() {
+					$state.go('children');
+				});
+			};
+			
+			$scope.loadChild = function() {
+				$scope.child = Child.get({
+					id : $stateParams.id
+				});
+			};
+
+			$scope.loadChild();
+			
+			/*$scope.open1 = function() {
 				$scope.popup1.opened = true;
 			};
 
@@ -66,21 +82,6 @@ angular.module('courseApp.childControllers', []).controller(
 			};
 			$scope.open2 = function() {
 				$scope.popup2.opened = true;
-			};
-
-			$scope.parents = Parent.query();
-			$scope.updateChild = function(child) {
-				$scope.child.$Update(function() {
-					$state.go('children');
-				});
-
-			};
-
-			$scope.loadChild = function() {
-				$scope.child = Child.get({
-					id : $stateParams.id
-				});
-			};
-
-			$scope.loadChild();
+			};*/
+		
 		});

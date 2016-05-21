@@ -30,7 +30,10 @@ public class ChildController {
 	}
 
 	@RequestMapping(value = "/child/{id}", method = RequestMethod.PUT)
-	public @ResponseBody Child update(Child child) {
+	public @ResponseBody Child update(@RequestBody Child child) {
+		if (child.getDob() == null) {
+			child.setDob(service.get(child.getId()).getDob());
+		}
 		return service.update(child);
 	}
 
@@ -38,7 +41,7 @@ public class ChildController {
 	public @ResponseBody void delete(@PathVariable("id") Integer id) {
 		service.delete(id);
 	}
-	
+
 	@RequestMapping(value = "/child/{id}", method = RequestMethod.GET)
 	public @ResponseBody Child get(@PathVariable("id") Integer id) {
 		return service.get(id);
