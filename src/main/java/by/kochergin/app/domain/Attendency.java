@@ -33,7 +33,6 @@ public class Attendency implements java.io.Serializable {
 	@JoinColumn(name = "Child_id", nullable = false)
 	@JsonIgnore
 	private Child child;
-	@Temporal(TemporalType.DATE)
 	@Column(name = "date", nullable = false, length = 10)
 	private Date date;
 

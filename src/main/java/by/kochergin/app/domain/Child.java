@@ -40,7 +40,6 @@ public class Child implements java.io.Serializable {
 	private String patronomic;
 	@Column(name = "lastname", nullable = false, length = 120)
 	private String lastname;
-	@Temporal(TemporalType.DATE)
 	@Column(name = "dob", nullable = false, length = 10)
 	private Date dob;
 	@Column(name = "childrenGardenMember", nullable = false)

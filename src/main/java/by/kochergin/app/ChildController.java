@@ -2,13 +2,19 @@ package by.kochergin.app;
 
 import java.util.List;
 
+import javax.ws.rs.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import by.kochergin.app.domain.Child;
 import by.kochergin.app.service.ChildService;
@@ -28,12 +34,19 @@ public class ChildController {
 	public @ResponseBody Child create(@RequestBody Child child) {
 		return service.create(child);
 	}
+	
+	@RequestMapping(value = "/child/{id}/photo", method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.OK)
+	public void create(@RequestParam("file") MultipartFile file, @PathParam("id") Integer childId) {
+		if (service.get(childId) != null) {
+
+		} else {
+			throw new RuntimeException("Child with id = " + childId + " is not specified");
+		}
+	}
 
 	@RequestMapping(value = "/child/{id}", method = RequestMethod.PUT)
 	public @ResponseBody Child update(@RequestBody Child child) {
-		if (child.getDob() == null) {
-			child.setDob(service.get(child.getId()).getDob());
-		}
 		return service.update(child);
 	}
 

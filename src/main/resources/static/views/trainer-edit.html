@@ -1,27 +1,73 @@
 <head lang="en">
 <meta charset="utf-8">
 </head>
-<form class="form-horizontal" role="form" ng-submit="updateTrainer(trainer)">
+<form class="form-horizontal" role="form"
+	ng-submit="updateTrainer(trainer)">
 
 	<div class="form-group">
 		<label for="lastname" class="col-sm-2 control-label">Фамилия</label>
 		<div class="col-sm-10">
 			<input type="text" ng-model="trainer.lastname" class="form-control"
-				id="lastname" placeholder="Фамилия?" />
+				id="lastname"/>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="firstname" class="col-sm-2 control-label">Имя</label>
-			<div class="col-sm-10">
-				<input type="text" ng-model="trainer.firstname" class="form-control"
-					id="firstname" placeholder="Имя?" />
-			</div>
+		<div class="col-sm-10">
+			<input type="text" ng-model="trainer.firstname" class="form-control"
+				id="firstname"/>
+		</div>
 	</div>
 	<div class="form-group">
 		<label for="patronomic" class="col-sm-2 control-label">Отчество</label>
 		<div class="col-sm-10">
 			<input type="text" ng-model="trainer.patronomic" class="form-control"
-				id="patronomic" placeholder="Отчество?" />
+				id="patronomic"/>
+		</div>
+	</div>
+	
+	
+		<div class="form-group">
+		<label for="dob" class="col-sm-2 control-label">Дата рождения</label>
+		<div class="col-sm-10">
+			<p class="input-group">
+				<input type="text" class="form-control"
+					uib-datepicker-popup="dd-MMMM-yyyy" data-ng-model="trainer.dob"
+					ng-required="true" close-text="Close"
+					is-open="trainerDobPopup.opened" datepicker-options="dateOptions" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default"
+						ng-click="openTrainerDobPopup()">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button>
+				</span>
+			</p>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="address" class="col-sm-2 control-label">Адрес</label>
+		<div class="col-sm-10">
+			<input type="text" ng-model="trainer.address" class="form-control"
+				id="address" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="education" class="col-sm-2 control-label">Образование</label>
+		<div class="col-sm-10">
+			<input type="text" ng-model="trainer.education" class="form-control"
+				id="education" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="parent" class="col-sm-2 control-label">Проводимые
+			курсы</label>
+		<div class="col-sm-10">
+			<select ng-model="trainer.courses" multiple
+				ng-options="course.name for course in courses track by course.id ">
+			</select>
 		</div>
 	</div>
 

@@ -1,0 +1,25 @@
+<head lang="en">
+<meta charset="utf-8">
+</head>
+
+<table class="table parenttable">
+
+	<tr>
+		<td>Уникальный номер</td>
+		<td>{{card.id}}</td>
+	</tr>
+	<tr>
+		<td>Номер</td>
+		<td>{{card.number}}</td>
+	</tr>
+	<tr>
+		<td>Баланс</td>
+		<td>{{card.balance}}</td>
+	</tr>
+
+	<td>Владелец</td>
+	<td>{{card.parent.lastname}} {{card.parent.firstname}}
+		{{card.parent.patronomic}}</td>
+	</tr>
+	
+</table>

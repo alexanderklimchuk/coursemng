@@ -1,5 +1,4 @@
 package by.kochergin.app.domain;
-// Generated 24.04.2016 10:10:15 by Hibernate Tools 3.2.2.GA
 
 import static javax.persistence.GenerationType.IDENTITY;
 

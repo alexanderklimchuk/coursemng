@@ -12,25 +12,6 @@ angular.module('courseApp.childControllers', []).controller(
 		}).controller('ChildCreateController',
 		function($scope, $state, $stateParams, uibDateParser, Child, Parent) {
 
-			$scope.open1 = function() {
-				$scope.popup1.opened = true;
-			};
-
-			$scope.open2 = function() {
-				$scope.popup2.opened = true;
-			};
-
-			$scope.popup1 = {
-				opened : false
-			};
-
-			$scope.popup2 = {
-				opened : false
-			};
-			$scope.open2 = function() {
-				$scope.popup2.opened = true;
-			};
-
 			$scope.child = new Child();
 			$scope.parents = Parent.query();
 
@@ -39,6 +20,20 @@ angular.module('courseApp.childControllers', []).controller(
 					$state.go('children');
 				});
 			}
+
+			$scope.childDobPopup = {
+				opened : false
+			};
+
+			$scope.openChildDobPopup = function() {
+				$scope.childDobPopup.opened = true;
+			};
+			$scope.dateOptions = {
+				formatYear : 'yy',
+				maxDate : new Date(),
+				minDate : new Date(1989, 5, 22),
+				startingDay : 1
+			};
 		}).controller('ChildViewController',
 		function($scope, $stateParams, Child) {
 
@@ -63,25 +58,21 @@ angular.module('courseApp.childControllers', []).controller(
 				});
 			};
 
-			$scope.loadChild();
-			
-			/*$scope.open1 = function() {
-				$scope.popup1.opened = true;
-			};
-
-			$scope.open2 = function() {
-				$scope.popup2.opened = true;
-			};
-
-			$scope.popup1 = {
+			$scope.childDobPopup = {
 				opened : false
 			};
 
-			$scope.popup2 = {
-				opened : false
+			$scope.openChildDobPopup = function() {
+				$scope.childDobPopup.opened = true;
 			};
-			$scope.open2 = function() {
-				$scope.popup2.opened = true;
-			};*/
-		
+				$scope.dateOptions = {
+				formatYear : 'yy',
+				maxDate : new Date(),
+				minDate : new Date(1989, 5, 22),
+				startingDay : 1
+			};
+				 $scope.formats = ['dd-MMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+				    $scope.format = $scope.formats[1];
+				    
+				    $scope.loadChild();
 		});

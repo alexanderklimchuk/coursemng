@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import by.kochergin.app.domain.Child;
 import by.kochergin.app.domain.Parent;
 import by.kochergin.app.service.ParentService;
 
@@ -38,6 +39,12 @@ public class ParentController {
 	@RequestMapping(value = "/parent/{id}", method = RequestMethod.GET)
 	public @ResponseBody Parent get(@PathVariable("id") Integer id) {
 		return parentService.get(id);
+	}
+	
+	
+	@RequestMapping(value = "/parent/{id}/children", method = RequestMethod.GET)
+	public @ResponseBody List<Child> getChildren(@PathVariable("id") Integer id) {
+		return parentService.getChildren(id);
 	}
 
 	@RequestMapping(value = "/parent/{id}", method = RequestMethod.DELETE)

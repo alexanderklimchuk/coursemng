@@ -32,7 +32,6 @@ public class Payment implements java.io.Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "Child_id", nullable = false)
 	private Child child;
-	@Temporal(TemporalType.DATE)
 	@Column(name = "date", nullable = false, length = 10)
 	private Date date;
 	@Column(name = "amount", nullable = false, precision = 10, scale = 0)

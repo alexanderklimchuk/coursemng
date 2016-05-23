@@ -9,7 +9,7 @@
 		<label for="lastname" class="col-sm-2 control-label">Фамилия</label>
 		<div class="col-sm-10">
 			<input type="text" ng-model="trainer.lastname" class="form-control"
-				id="lastname"  />
+				id="lastname" />
 		</div>
 	</div>
 	<div class="form-group">
@@ -30,8 +30,18 @@
 	<div class="form-group">
 		<label for="dob" class="col-sm-2 control-label">Дата рождения</label>
 		<div class="col-sm-10">
-			<input type="date" ng-model="trainer.dob" class="form-control"
-				id="dob" />
+			<p class="input-group">
+				<input type="text" class="form-control"
+					uib-datepicker-popup="dd-MMMM-yyyy" data-ng-model="trainer.dob"
+					ng-required="true" close-text="Close"
+					is-open="trainerDobPopup.opened" datepicker-options="dateOptions" />
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default"
+						ng-click="openTrainerDobPopup()">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</button>
+				</span>
+			</p>
 		</div>
 	</div>
 
@@ -52,11 +62,20 @@
 	</div>
 
 	<div class="form-group">
+		<label for="parent" class="col-sm-2 control-label">Проводимые
+			курсы</label>
+		<div class="col-sm-10">
+			<select ng-model="trainer.courses"  multiple
+				ng-options="course.name for course in courses track by course.id ">
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<input type="submit" class="btn btn-primary" value="Save" />
 		</div>
 	</div>
-
 </form>
 
 

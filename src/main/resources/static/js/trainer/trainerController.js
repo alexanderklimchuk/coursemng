@@ -18,24 +18,40 @@ angular.module('courseApp.trainerControllers', []).controller(
 			});
 
 		}).controller('TrainerCreateController',
-		function($scope, $state, $stateParams, Trainer) {
+		function($scope, $state, $stateParams, Trainer, Course) {
 
 			$scope.trainer = new Trainer();
 
+			$scope.courses = Course.query();
+
+			$scope.trainerDobPopup = {
+				opened : false
+			};
+
+			$scope.openTrainerDobPopup = function() {
+				$scope.trainerDobPopup.opened = true;
+			};
+			$scope.dateOptions = {
+				formatYear : 'yy',
+				maxDate : new Date(),
+				minDate : new Date(1955, 5, 22),
+				startingDay : 1
+			};
+
 			$scope.addTrainer = function() {
+
+				// $scope.trainer.courses = $scope.trainer.courses0;
 				$scope.trainer.$save(function() {
 					$state.go('trainers');
 				});
 			}
 
 		}).controller('TrainerEditController',
-		function($scope, $state, $stateParams, Trainer) {
-
+		function($scope, $state, $stateParams, Trainer, Course) {
 			$scope.updateTrainer = function(trainer) {
 				$scope.trainer.$Update(function() {
 					$state.go('trainers');
 				});
-
 			};
 
 			$scope.loadTrainer = function() {
@@ -44,5 +60,20 @@ angular.module('courseApp.trainerControllers', []).controller(
 				});
 			};
 
+			$scope.courses = Course.query();
 			$scope.loadTrainer();
+
+			$scope.trainerDobPopup = {
+				opened : false
+			};
+
+			$scope.openTrainerDobPopup = function() {
+				$scope.trainerDobPopup.opened = true;
+			};
+			$scope.dateOptions = {
+				formatYear : 'yy',
+				maxDate : new Date(),
+				minDate : new Date(1955, 5, 22),
+				startingDay : 1
+			};
 		});

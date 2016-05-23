@@ -19,7 +19,14 @@ angular.module('courseApp.parentControllers', []).controller(
 				});
 			}
 		}).controller('ParentViewController',
-		function($scope, $stateParams, Parent) {
+		function($scope, $stateParams, $resource, Parent) {
+
+			
+			var Child = $resource('/parent/:id/children',
+			 {id: $stateParams.id});
+
+			$scope.children = Child.query();
+			
 			$scope.parent = Parent.get({
 				id : $stateParams.id
 			});

@@ -1,7 +1,7 @@
 <head lang="en">
 <meta charset="utf-8">
 </head>
-<form class="form-horizontal" role="form" 
+<form class="form-horizontal" 
 ng-submit="updateChild(child)">
 
 	<div class="form-group">
@@ -25,12 +25,12 @@ ng-submit="updateChild(child)">
 				id="patronomic" />
 		</div>
 	</div>
-<!-- ng-options="parent.firstname + ' ' + parent.lastname for parent in parents"> -->
 	<div class="form-group">
 		<label for="parent" class="col-sm-2 control-label">Родитель</label>
 		<div class="col-sm-10">
-			<select ng-model="child.parent" ng-options="item as item.firstname + ' '+ item.lastname  for item in parents">
 			</select>
+			<select id="type1" data-ng-model="child.parent" class="form-control" ng-options="parent.firstname + ' ' + parent.lastname  for parent in parents track by parent.id">
+                </select>
 		</div>
 	</div>
 
@@ -38,10 +38,10 @@ ng-submit="updateChild(child)">
 		<label for="dob" class="col-sm-2 control-label">Дата рождения</label>
 		<div class="col-sm-10">
 			<p class="input-group">
-				<input type="text" class="form-control" uib-datepicker-popup
-					ng-model="child.dob" is-open="popup2.opened" ng-required="true"
-					close-text="Close" /> <span class="input-group-btn">
-					<button type="button" class="btn btn-default" ng-click="open2()">
+				<input type="text" class="form-control" uib-datepicker-popup="{{format}}"
+					ng-model="child.dob"  close-text="Close" is-open="childDobPopup.opened" datepicker-options="dateOptions"/>
+					<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="openChildDobPopup()">
 						<i class="glyphicon glyphicon-calendar"></i>
 					</button>
 				</span>

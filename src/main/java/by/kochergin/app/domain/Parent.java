@@ -50,7 +50,8 @@ public class Parent implements java.io.Serializable {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
 	@JsonIgnore
 	private Set<Child> childs = new HashSet<Child>(0);
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parent")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "parent")
+	@JsonIgnore
 	private Set<Discountcard> discountcards = new HashSet<Discountcard>(0);
 
 	public Parent() {

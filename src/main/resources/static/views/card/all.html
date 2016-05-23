@@ -1,0 +1,24 @@
+<head lang="en">
+<meta charset="utf-8">
+</head>
+
+<h3>Дисконтные карты</h3>
+
+<table class="table card">
+	<thead>
+		<tr>
+			<th>Уникальный номер</th>
+			<th>Номер</th>
+			<th>Баланс</th>
+			<th>Владелец</th>
+		</tr>
+	</thead>
+	<tr ng-repeat="card in cards">
+		<td>{{card.id}}</td>
+		<td>{{card.number}}</td>
+		<td>{{card.balance}}</td>
+		<td>{{card.parent.lastname}} {{card.parent.firstname}}
+			{{card.parent.patronomic}}</td>
+		<td><a class="btn btn-primary" ui-sref="viewCard({id:card.id})">Просмотр</a></td>
+	</tr>
+</table>

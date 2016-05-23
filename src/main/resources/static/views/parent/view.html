@@ -43,6 +43,14 @@
 	</tr>
 </table>
 
+<h4>Дети:</h4>
+<table class="table childrentable">
+	<tr ng-repeat="child in children">
+		<td>{{child.firstname}} {{child.patronomic}}</td>
+		<td><a class="btn btn-primary" ui-sref="viewChild({id:child.id})">Просмотр</a></td>
+	</tr>
+</table>
+
 <div>
 	<a class="btn btn-primary" ui-sref="editParent({id:parent.id})">Редактировать</a>
 </div>

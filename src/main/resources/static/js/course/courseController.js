@@ -21,9 +21,7 @@ angular.module('courseApp.courseControllers', []).controller(
 
 		}).controller('CourseViewController',
 		function($scope, $stateParams, Course) {
-
-			$scope.trainer = Course.get({
+			$scope.course = Course.get({
 				id : $stateParams.id
 			});
-
 		})

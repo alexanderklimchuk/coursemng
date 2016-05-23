@@ -56,7 +56,7 @@
 			клиента</label>
 		<div class="col-sm-10">
 			<select ng-model="parent.clientstatus"
-				ng-options="x.name for x in statuses">
+				ng-options="status.name for status in statuses track by status.id">
 			</select>
 		</div>
 	</div>

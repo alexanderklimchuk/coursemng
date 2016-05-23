@@ -2,11 +2,15 @@
  * Created by Sandeep on 01/06/14.
  */
 
-angular.module('courseApp', [ 'ngAnimate','ngFileUpload', 'ui.bootstrap', 'ui.router', 'ngResource',
+angular.module('courseApp', ['ngMessages','ngAnimate','ngFileUpload', 'ui.bootstrap', 'ui.router', 'ngResource',
 		'courseApp.trainerControllers', 'courseApp.trainerServices',
 		'courseApp.courseServices', 'courseApp.courseControllers',
 		'courseApp.childControllers', 'courseApp.childServices',
-		'courseApp.parentControllers', 'courseApp.parentServices' ]);
+		'courseApp.parentControllers', 'courseApp.parentServices',
+		'courseApp.cardControllers', 'courseApp.cardServices'
+		
+		
+		]);
 
 angular.module('courseApp').config(function($stateProvider, $httpProvider) {
 	$stateProvider.state('trainers', {
@@ -39,7 +43,12 @@ angular.module('courseApp').config(function($stateProvider, $httpProvider) {
 		url : '/courses/:id/edit',
 		templateUrl : 'views/course-edit.html',
 		controller : 'CourseEditController'
+	}).state('viewCourse', {
+		url : '/courses/:id/view',
+		templateUrl : 'views/course-view.html',
+		controller : 'CourseViewController'
 	}).
+	
 	// ///////////////Child/////////////////////
 	state('newChild', {
 		url : '/children/views/new',
@@ -75,7 +84,18 @@ angular.module('courseApp').config(function($stateProvider, $httpProvider) {
 		url : '/parent/:id/edit',
 		templateUrl : '/views/parent/edit.html',
 		controller : 'ParentEditController'
+	}).
+	
+	state('discountCards', {
+		url: '/discountCards',
+		templateUrl: '/views/card/all.html',
+		controller : 'CardListController'
+	}).state('viewCard', {
+		url : '/card/:id/view',
+		templateUrl : '/views/card/view.html',
+		controller : 'CardViewController'
 	})
+	
 }).run(function($state) {
 	$state.go('trainers');
 });

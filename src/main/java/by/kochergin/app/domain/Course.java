@@ -34,10 +34,10 @@ public class Course implements java.io.Serializable {
 	@Column(name = "name", nullable = false, length = 45)
 	private String name;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinTable(name = "Course_has_Trainer", joinColumns = {
-			@JoinColumn(name = "Course_id", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "Trainer_id", nullable = false, updatable = false) })
+			@JoinColumn(name = "Course_id", nullable = true, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "Trainer_id", nullable = true, updatable = false) })
 	private Set<Trainer> trainers = new HashSet<Trainer>(0);
 
 	public Course() {
