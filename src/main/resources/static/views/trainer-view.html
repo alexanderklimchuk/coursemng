@@ -24,6 +24,7 @@
 <table class="table coursetable">
 	<tr ng-repeat="course in trainer.courses">
 		<td>{{course.name}}</td>
+		<td><a class="btn btn-primary" ui-sref="viewCourse({id:course.id})">Просмотр</a></td>
 	</tr>
 </table>
 

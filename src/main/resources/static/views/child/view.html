@@ -48,7 +48,15 @@
 		<td><input type="checkbox" ng-model="child.hasSpeachIssues"
 			class="form-control" id="childrenGardenMemeber" disabled="disabled" /></td>
 	</tr>
+</table>
 
+<h4>Курсы:</h4>
+<table class="table coursetable">
+	<tr ng-repeat="course in child.courses">
+		<td>{{course.name}}</td>
+		<td><a class="btn btn-primary"
+			ui-sref="viewCourse({id:course.id})">Просмотр</a></td>
+	</tr>
 </table>
 
 <div>

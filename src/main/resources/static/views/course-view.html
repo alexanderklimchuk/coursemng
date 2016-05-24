@@ -3,10 +3,20 @@
 </head>
 
 <h3>Данные курса - {{course.name}}</h3>
-<table class="table coursetable">
 
-	<tr>
-		<td></td>
-		<td></td>
+<h4>Тренеры:</h4>
+<table class="table trainertable">
+	<tr ng-repeat="trainer in trainers">
+		<td>{{trainer.firstname}} {{trainer.patronomic}}</td>
+		<td><a class="btn btn-primary"
+			ui-sref="viewTrainer({id:trainer.id})">Просмотр</a></td>
+	</tr>
+</table>
+
+<h4>Дети участвующие в курсе:</h4>
+<table class="table childrentable">
+	<tr ng-repeat="child in children">
+		<td>{{child.lastname}} {{child.firstname}}</td>
+		<td><a class="btn btn-primary" ui-sref="viewChild({id:child.id})">Просмотр</a></td>
 	</tr>
 </table>

@@ -20,7 +20,19 @@ angular.module('courseApp.courseControllers', []).controller(
 			}
 
 		}).controller('CourseViewController',
-		function($scope, $stateParams, Course) {
+		function($scope, $stateParams,$resource, Course) {
+
+			var Trainer = $resource('/course/:id/trainers', {
+				id : $stateParams.id
+			});
+			
+			var Child = $resource('/course/:id/children', {
+				id : $stateParams.id
+			});
+			
+			$scope.trainers = Trainer.query();
+			$scope.children = Child.query();
+
 			$scope.course = Course.get({
 				id : $stateParams.id
 			});

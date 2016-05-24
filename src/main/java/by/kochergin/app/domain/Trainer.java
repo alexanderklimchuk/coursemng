@@ -43,7 +43,7 @@ public class Trainer implements java.io.Serializable {
 	private String patronomic;
 	@Column(name = "lastname", nullable = false, length = 45)
 	private String lastname;
-	
+
 	@Column(name = "dob", nullable = false, length = 10)
 	private Date dob;
 	@Column(name = "education", nullable = false, length = 45)
@@ -52,10 +52,9 @@ public class Trainer implements java.io.Serializable {
 	private String address;
 
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	@JoinTable(name = "Course_has_Trainer", joinColumns = {
-			@JoinColumn(name = "Trainer_id", nullable = true, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "Course_id", nullable = true, updatable = false) })
-
+	@JoinTable(name = "Course_has_Trainer", joinColumns = { @JoinColumn(name = "Trainer_id", nullable = true, updatable = false) }, inverseJoinColumns = {
+			@JoinColumn(name = "Course_id", nullable = true, updatable = false) })
+	
 	private Set<Course> courses = new HashSet<Course>(0);
 
 	public Trainer() {

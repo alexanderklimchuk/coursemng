@@ -3,17 +3,17 @@ angular.module('courseApp.childControllers', []).controller(
 		function($scope, $state, $window, Child, uibDateParser) {
 			$scope.children = Child.query();
 			$scope.deleteChild = function(child) {
-
 				child.$delete(function() {
 					$scope.children = Child.query();
 					$state.go('children');
 				});
 			}
 		}).controller('ChildCreateController',
-		function($scope, $state, $stateParams, uibDateParser, Child, Parent) {
+		function($scope, $state, $stateParams, uibDateParser, Child, Parent, Course) {
 
 			$scope.child = new Child();
 			$scope.parents = Parent.query();
+			$scope.courses = Course.query();
 
 			$scope.addChild = function() {
 				$scope.child.$save(function() {
@@ -42,9 +42,10 @@ angular.module('courseApp.childControllers', []).controller(
 			});
 
 		}).controller('ChildEditController',
-		function($scope, $state, $stateParams, Child, Parent) {
+		function($scope, $state, $stateParams, Child, Parent, Course) {
 
 			$scope.parents = Parent.query();
+			$scope.courses = Course.query();
 			
 			$scope.updateChild = function(child) {
 				$scope.child.$Update(function() {

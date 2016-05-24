@@ -75,7 +75,16 @@ ng-submit="updateChild(child)">
 				class="form-control" id="hasSpeachIssues" />
 		</div>
 	</div>
-
+	
+	<div class="form-group">
+		<label for="parent" class="col-sm-2 control-label">Участвует в курсах</label>
+		<div class="col-sm-10">
+			<select ng-model="child.courses"  multiple
+				ng-options="course.name for course in courses track by course.id ">
+			</select>
+		</div>
+	</div>
+	
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<input type="submit" class="btn btn-primary" value="Сохранить" />

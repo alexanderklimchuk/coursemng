@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import by.kochergin.app.domain.Child;
 import by.kochergin.app.domain.Course;
+import by.kochergin.app.domain.Trainer;
 import by.kochergin.app.service.CourseService;
 
 @RestController
@@ -39,10 +41,19 @@ public class CourseController {
 	public @ResponseBody Course get(@PathVariable("id") Integer id) {
 		return courseService.get(id);
 	}
+	
+	@RequestMapping(value = "/course/{id}/trainers", method = RequestMethod.GET)
+	public @ResponseBody List<Trainer> getTrainers(@PathVariable("id") Integer id) {
+		return courseService.getTrainersByCourseId(id);
+	}
+	
+	@RequestMapping(value = "/course/{id}/children", method = RequestMethod.GET)
+	public @ResponseBody List<Child> getChildren(@PathVariable("id") Integer id) {
+		return courseService.getChildrenByCourseId(id);
+	}
 
 	@RequestMapping(value = "/course/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody void delete(@PathVariable("id") Integer id) {
 		courseService.delete(id);
 	}
-
 }
