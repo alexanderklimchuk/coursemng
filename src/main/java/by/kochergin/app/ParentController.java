@@ -51,5 +51,4 @@ public class ParentController {
 	public @ResponseBody void delete(@PathVariable("id") Integer id) {
 		parentService.delete(id);
 	}
-
 }

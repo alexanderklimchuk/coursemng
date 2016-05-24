@@ -1,0 +1,24 @@
+<head lang="en">
+<meta charset="utf-8">
+</head>
+<h3>Оплаты</h3>
+<table class="table payments">
+	<thead>
+		<th>Имя курса</th>
+		<th>Имя ребенка</th>
+		<th>Плательщик</th>
+		<th>Сумма</th>
+		<th>Дата платежа</th>
+	</thead>
+	<tr ng-repeat="payment in payments">
+		<td>{{payment.course.name}}</td>
+		<td>{{payment.child.firstname}} {{payment.child.lastname}}</td>
+		<td>{{payment.child.parent.firstname}} {{payment.child.parent.lastname}}</td>
+		<td>{{payment.amount}}</td>
+		<td>{{payment.date| date:'dd-MM-yyyy'}}</td>
+		<td><a class="btn btn-danger" ng-click="deletePayment(payment)">Удаление</a>
+		</td>
+	</tr>
+</table>
+
+<a ui-sref="addPayment" class="btn-primary btn-lg nodecoration">Добавить оплату</a>

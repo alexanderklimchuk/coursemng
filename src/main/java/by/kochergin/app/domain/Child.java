@@ -58,6 +58,7 @@ public class Child implements java.io.Serializable {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "child")
 	private Set<Attendency> attendencies = new HashSet<Attendency>(0);
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "child")
+	@JsonIgnore
 	private Set<Payment> payments = new HashSet<Payment>(0);
 
 	public Child() {

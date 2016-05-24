@@ -7,10 +7,8 @@ angular.module('courseApp', ['ngMessages','ngAnimate','ngFileUpload', 'ui.bootst
 		'courseApp.courseServices', 'courseApp.courseControllers',
 		'courseApp.childControllers', 'courseApp.childServices',
 		'courseApp.parentControllers', 'courseApp.parentServices',
-		'courseApp.cardControllers', 'courseApp.cardServices'
-		
-		
-		]);
+		'courseApp.cardControllers', 'courseApp.cardServices',
+		'courseApp.paymentControllers', 'courseApp.paymentServices']);
 
 angular.module('courseApp').config(function($stateProvider, $httpProvider) {
 	$stateProvider.state('trainers', {
@@ -94,6 +92,17 @@ angular.module('courseApp').config(function($stateProvider, $httpProvider) {
 		url : '/card/:id/view',
 		templateUrl : '/views/card/view.html',
 		controller : 'CardViewController'
+	}).
+	
+	/////////////////
+	state('payments', {
+		url : '/payments',
+		templateUrl : '/views/payment/all.html',
+		controller : 'PaymentListController'
+	}).state('addPayment', {
+		url : '/payment/views/new',
+		templateUrl : 'views/payment/add.html',
+		controller : 'PaymentCreateController'
 	})
 	
 }).run(function($state) {

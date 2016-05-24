@@ -70,4 +70,8 @@ public class Discountcard implements java.io.Serializable {
 		this.balance = balance;
 	}
 
+	public void addBalance(Integer delta) {
+		balance = balance + delta;
+	}
+
 }
