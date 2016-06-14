@@ -27,6 +27,8 @@ public class User implements java.io.Serializable {
 	private String login;
 	@Column(name = "password", nullable = false, length = 45)
 	private String password;
+	@Column(name = "role", nullable = false, length = 45)
+	private String role;
 	@Column(name = "isActve")
 	private Boolean isActve;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
@@ -85,4 +87,11 @@ public class User implements java.io.Serializable {
 		this.parents = parents;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 }

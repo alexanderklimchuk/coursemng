@@ -18,18 +18,38 @@ angular.module('courseApp.parentControllers', []).controller(
 					$state.go('parents');
 				});
 			}
-		}).controller('ParentViewController',
-		function($scope, $stateParams, $resource, Parent) {
+		}).controller(
+		'ParentViewController',
+		function($scope, $stateParams, $resource, Parent, $http) {
 
-			
-			var Child = $resource('/parent/:id/children',
-			 {id: $stateParams.id});
+			var Child = $resource('/parent/:id/children', {
+				id : $stateParams.id
+			});
 
 			$scope.children = Child.query();
-			
+
 			$scope.parent = Parent.get({
 				id : $stateParams.id
 			});
+
+			$scope.incrementTen = function(cardId) {
+				$http.put("/discountCard/" + cardId +"/increment")
+				  .then(function(response){ $scope.discountcard = response.data; });
+			};
+
+			$scope.decrementTen = function(cardId) {
+				
+				$http.put("/discountCard/" + cardId +"/decrement")
+				  .then(function(response){ $scope.discountcard = response.data; });
+			};
+
+			var DiscountCard = $resource('/parent/:id/discountcard', {
+				id : $stateParams.id
+			});
+			$scope.discountcard = DiscountCard.get({
+				id : $stateParams.id
+			});
+
 		}).controller('ParentEditController',
 		function($scope, $state, $stateParams, Parent, Clientstatus) {
 
@@ -38,7 +58,6 @@ angular.module('courseApp.parentControllers', []).controller(
 				$scope.parent.$Update(function() {
 					$state.go('parents');
 				});
-
 			};
 
 			$scope.loadParent = function() {

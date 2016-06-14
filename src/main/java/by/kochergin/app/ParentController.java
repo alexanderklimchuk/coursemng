@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import by.kochergin.app.domain.Child;
+import by.kochergin.app.domain.Discountcard;
 import by.kochergin.app.domain.Parent;
 import by.kochergin.app.service.ParentService;
 
@@ -40,8 +41,7 @@ public class ParentController {
 	public @ResponseBody Parent get(@PathVariable("id") Integer id) {
 		return parentService.get(id);
 	}
-	
-	
+
 	@RequestMapping(value = "/parent/{id}/children", method = RequestMethod.GET)
 	public @ResponseBody List<Child> getChildren(@PathVariable("id") Integer id) {
 		return parentService.getChildren(id);
@@ -50,5 +50,10 @@ public class ParentController {
 	@RequestMapping(value = "/parent/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody void delete(@PathVariable("id") Integer id) {
 		parentService.delete(id);
+	}
+
+	@RequestMapping(value = "/parent/{parentId}/discountcard", method = RequestMethod.GET)
+	public @ResponseBody Discountcard getDiscountCard(@PathVariable("parentId") Integer parentId) {
+		return parentService.getDiscountCard(parentId);
 	}
 }

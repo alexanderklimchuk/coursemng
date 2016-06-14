@@ -2,11 +2,13 @@ package by.kochergin.app.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import by.kochergin.app.dao.IClientstatusDao;
 import by.kochergin.app.dao.IParentDao;
@@ -40,5 +42,13 @@ public class ParentService extends GenericService<Parent, Integer, IParentDao> {
 
 	public List<Child> getChildren(Integer id) {
 		return new ArrayList<Child>(dao.findOne(id).getChilds());
+	}
+
+	public Discountcard getDiscountCard(Integer parentId) {
+		Set<Discountcard> cards = dao.findOne(parentId).getDiscountcards();
+		if (!CollectionUtils.isEmpty(cards)) {
+			return cards.iterator().next();
+		}
+		return null;
 	}
 }

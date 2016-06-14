@@ -8,7 +8,8 @@ angular.module('courseApp', ['ngMessages','ngAnimate','ngFileUpload', 'ui.bootst
 		'courseApp.childControllers', 'courseApp.childServices',
 		'courseApp.parentControllers', 'courseApp.parentServices',
 		'courseApp.cardControllers', 'courseApp.cardServices',
-		'courseApp.paymentControllers', 'courseApp.paymentServices']);
+		'courseApp.paymentControllers', 'courseApp.paymentServices',
+		'courseApp.navigationControllers']);
 
 angular.module('courseApp').config(function($stateProvider, $httpProvider) {
 	$stateProvider.state('trainers', {
@@ -103,7 +104,13 @@ angular.module('courseApp').config(function($stateProvider, $httpProvider) {
 		url : '/payment/views/new',
 		templateUrl : 'views/payment/add.html',
 		controller : 'PaymentCreateController'
-	})
+	}).state('login',{
+		url : '/login',
+		templateUrl : 'views/login.html',
+		controller : 'NavigationController'
+	});
+	
+	//$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 	
 }).run(function($state) {
 	$state.go('trainers');

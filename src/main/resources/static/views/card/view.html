@@ -16,10 +16,16 @@
 		<td>Баланс</td>
 		<td>{{card.balance}}</td>
 	</tr>
+	<tr>
+		<td>
+			<button ng-click="decrementTen(card.id)">-10</button>
+			<button ng-click="incrementTen(card.id)">+10</button>
+		</td>
+	</tr>
 
 	<td>Владелец</td>
 	<td>{{card.parent.lastname}} {{card.parent.firstname}}
 		{{card.parent.patronomic}}</td>
 	</tr>
-	
+
 </table>

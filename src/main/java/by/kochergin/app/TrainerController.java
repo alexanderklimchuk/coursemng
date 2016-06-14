@@ -1,5 +1,6 @@
 package by.kochergin.app;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,10 @@ public class TrainerController {
 	@RequestMapping(value = "/trainer/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody void delete(@PathVariable("id") Integer id) {
 		trainerService.delete(id);
+	}
+	
+	@RequestMapping("/user")
+	public Principal user(Principal user) {
+		return user;
 	}
 }

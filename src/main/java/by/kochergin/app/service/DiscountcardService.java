@@ -1,6 +1,7 @@
 package by.kochergin.app.service;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,12 @@ public class DiscountcardService extends GenericService<Discountcard, Integer, I
 	@PostConstruct
 	public void init() {
 		setDao(dao);
+	}
+
+	@Transactional
+	public void addPoints(Integer cardId, Integer delta) {
+		Discountcard discountCard = dao.findOne(cardId);
+		discountCard.addBalance(delta);
+		dao.save(discountCard);
 	}
 }

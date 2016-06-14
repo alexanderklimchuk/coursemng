@@ -44,4 +44,15 @@ public class DicountCardController {
 		service.delete(id);
 	}
 
+	@RequestMapping(value = "/discountCard/{id}/increment", method = RequestMethod.PUT)
+	public @ResponseBody Discountcard increment(@PathVariable("id") Integer id) {
+		service.addPoints(id, 10);
+		return service.get(id);
+	}
+
+	@RequestMapping(value = "/discountCard/{id}/decrement", method = RequestMethod.PUT)
+	public @ResponseBody Discountcard decrement(@PathVariable("id") Integer id) {
+		service.addPoints(id, -10);
+		return service.get(id);
+	}
 }

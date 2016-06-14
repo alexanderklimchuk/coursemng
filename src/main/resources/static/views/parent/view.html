@@ -41,6 +41,14 @@
 		<td>{{parent.clientstatus.name}}, скидка
 			{{parent.clientstatus.discountPercent}} %</td>
 	</tr>
+	<tr>
+		<td>Баланс дисконтной карты:</td>
+		<td style="font-style: oblique;">{{discountcard.balance}} баллов</td>
+		<td>
+		<button ng-click="decrementTen(discountcard.id)">-10</button>
+		<button ng-click="incrementTen(discountcard.id)">+10</button></td>
+	</tr>
+	
 </table>
 
 <h4>Дети:</h4>
