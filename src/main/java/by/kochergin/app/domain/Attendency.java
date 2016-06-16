@@ -24,21 +24,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Attendency implements java.io.Serializable {
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Course_id", nullable = false)
 	private Course course;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Child_id", nullable = false)
-	//@JsonIgnore
+	// @JsonIgnore
 	private Child child;
 	@Column(name = "date", nullable = false, length = 10)
 	private Date date;
 
+	@Column(name = "amount", nullable = false, precision = 10, scale = 0)
+	private long amount;
+
 	public Attendency() {
 	}
-
 
 	public int getId() {
 		return this.id;
@@ -72,6 +74,14 @@ public class Attendency implements java.io.Serializable {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public long getAmount() {
+		return amount;
+	}
+
+	public void setAmount(long amount) {
+		this.amount = amount;
 	}
 
 }

@@ -9,7 +9,7 @@ angular.module('courseApp.childControllers', []).controller(
 				});
 			}
 		}).controller('ChildCreateController',
-		function($scope, $state, $stateParams, uibDateParser, Child, Parent, Course) {
+		function($scope, $state, $stateParams, uibDateParser, Child, Parent, Course, $resource) {
 
 			$scope.child = new Child();
 			$scope.parents = Parent.query();
@@ -35,11 +35,44 @@ angular.module('courseApp.childControllers', []).controller(
 				startingDay : 1
 			};
 		}).controller('ChildViewController',
-		function($scope, $stateParams, Child) {
+		function($scope, $resource, $stateParams, Child) {
 
 			$scope.child = Child.get({
 				id : $stateParams.id
 			});
+			
+			var Attendency = $resource('/child/:id/attendencies', {
+				id : $stateParams.id
+			});
+			
+			var Payment = $resource('/child/:id/payments', {
+				id : $stateParams.id
+			});
+			
+			$scope.attendencies = Attendency.query();
+			$scope.payments = Payment.query();
+			
+			
+			$scope.getTotalAttended = function(){
+			    var total = 0;
+			    for(var i = 0; i < $scope.attendencies.length; i++){
+			        var att = $scope.attendencies[i];
+			        total += (att.amount);
+			    }
+			    return total;
+			}
+			
+			$scope.getTotalPaid = function(){
+			    var total = 0;
+			    for(var i = 0; i < $scope.payments.length; i++){
+			        var att = $scope.payments[i];
+			        total += (att.amount);
+			    }
+			    return total;
+			}
+			
+			
+			
 
 		}).controller('ChildEditController',
 		function($scope, $state, $stateParams, Child, Parent, Course) {

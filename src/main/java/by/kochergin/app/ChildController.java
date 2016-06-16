@@ -1,5 +1,6 @@
 package by.kochergin.app;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.PathParam;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import by.kochergin.app.domain.Attendency;
 import by.kochergin.app.domain.Child;
 import by.kochergin.app.service.ChildService;
 
@@ -60,5 +62,15 @@ public class ChildController {
 	@RequestMapping(value = "/child/{id}", method = RequestMethod.GET)
 	public @ResponseBody Child get(@PathVariable("id") Integer id) {
 		return service.get(id);
+	}
+	
+	@RequestMapping(value = "/child/{id}/attendencies", method = RequestMethod.GET)
+	public @ResponseBody List<Attendency> getChildAttendencies(@PathVariable("id") Integer id) {
+		return new ArrayList(service.get(id).getAttendencies());
+	}
+	
+	@RequestMapping(value = "/child/{id}/payments", method = RequestMethod.GET)
+	public @ResponseBody List<Attendency> getChildPayments(@PathVariable("id") Integer id) {
+		return new ArrayList(service.get(id).getPayments());
 	}
 }
