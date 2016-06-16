@@ -9,7 +9,8 @@ angular.module('courseApp', ['ngMessages','ngAnimate','ngFileUpload', 'ui.bootst
 		'courseApp.parentControllers', 'courseApp.parentServices',
 		'courseApp.cardControllers', 'courseApp.cardServices',
 		'courseApp.paymentControllers', 'courseApp.paymentServices',
-		'courseApp.navigationControllers']);
+		'courseApp.navigationControllers', 'courseApp.attendencyControllers', 
+		'courseApp.attendencyServices']);
 
 angular.module('courseApp').config(function($stateProvider, $httpProvider) {
 	$stateProvider.state('trainers', {
@@ -108,6 +109,13 @@ angular.module('courseApp').config(function($stateProvider, $httpProvider) {
 		url : '/login',
 		templateUrl : 'views/login.html',
 		controller : 'NavigationController'
+	}).
+	
+	///
+	state('attendencies', {
+		url : '/attendencies',
+		templateUrl : '/views/attendencies/all.html',
+		controller : 'AttendencyListController'
 	});
 	
 	//$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

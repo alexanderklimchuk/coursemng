@@ -51,10 +51,9 @@ public class Trainer implements java.io.Serializable {
 	@Column(name = "address", nullable = false, length = 45)
 	private String address;
 
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-	@JoinTable(name = "Course_has_Trainer", joinColumns = { @JoinColumn(name = "Trainer_id", nullable = true, updatable = false) }, inverseJoinColumns = {
-			@JoinColumn(name = "Course_id", nullable = true, updatable = false) })
-	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "Course_has_Trainer", joinColumns = { @JoinColumn(name = "Trainer_id", nullable = true, updatable = true)  }, inverseJoinColumns = {
+			@JoinColumn(name = "Course_id", nullable = true, updatable = true) })
 	private Set<Course> courses = new HashSet<Course>(0);
 
 	public Trainer() {

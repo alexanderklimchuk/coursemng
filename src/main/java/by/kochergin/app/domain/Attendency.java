@@ -26,12 +26,12 @@ public class Attendency implements java.io.Serializable {
 	@Column(name = "id", unique = true, nullable = false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Course_id", nullable = false)
 	private Course course;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Child_id", nullable = false)
-	@JsonIgnore
+	//@JsonIgnore
 	private Child child;
 	@Column(name = "date", nullable = false, length = 10)
 	private Date date;

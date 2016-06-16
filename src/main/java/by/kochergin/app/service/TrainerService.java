@@ -34,6 +34,13 @@ public class TrainerService extends GenericService<Trainer, Integer, ITrainerDao
 	}
 
 	@Override
+	public void delete(Integer id) {
+		Trainer trainer = dao.findOne(id);
+		trainer.getCourses().clear();
+		dao.delete(id);
+	}
+
+	@Override
 	public Trainer create(Trainer entity) {
 		refreshCourses(entity);
 		return super.create(entity);

@@ -3,6 +3,7 @@ package by.kochergin.app;
 import java.util.List;
 
 import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class ChildController {
 	private ChildService service;
 
 	@RequestMapping(value = "/child", method = RequestMethod.GET)
-	public @ResponseBody List<Child> getAll() {
+	public @ResponseBody List<Child> getAll(@QueryParam(value = "courseId") Integer courseId) {
 		return service.getAll();
 	}
 
@@ -34,7 +35,7 @@ public class ChildController {
 	public @ResponseBody Child create(@RequestBody Child child) {
 		return service.create(child);
 	}
-	
+
 	@RequestMapping(value = "/child/{id}/photo", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void create(@RequestParam("file") MultipartFile file, @PathParam("id") Integer childId) {
@@ -52,6 +53,7 @@ public class ChildController {
 
 	@RequestMapping(value = "/child/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody void delete(@PathVariable("id") Integer id) {
+		service.delete(id);
 		service.delete(id);
 	}
 

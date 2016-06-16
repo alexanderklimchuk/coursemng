@@ -56,6 +56,7 @@ public class Child implements java.io.Serializable {
 					@JoinColumn(name = "Course_id", nullable = false, updatable = false) })
 	private Set<Course> courses = new HashSet<Course>(0);
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "child")
+	@JsonIgnore
 	private Set<Attendency> attendencies = new HashSet<Attendency>(0);
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "child")
 	@JsonIgnore

@@ -42,6 +42,11 @@ public class TrainerController {
 
 	@RequestMapping(value = "/trainer/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody void delete(@PathVariable("id") Integer id) {
+		
+		Trainer toDelete = trainerService.get(id);
+		if(!toDelete.getCourses().isEmpty()){
+			trainerService.delete(id);
+		}
 		trainerService.delete(id);
 	}
 	

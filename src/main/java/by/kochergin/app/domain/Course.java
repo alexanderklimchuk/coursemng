@@ -32,7 +32,7 @@ public class Course implements java.io.Serializable {
 	@Column(name = "name", nullable = false, length = 45)
 	private String name;
 
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "Course_has_Trainer", joinColumns = { @JoinColumn(name = "Course_id", nullable = true, updatable = false) }, inverseJoinColumns = {
 			@JoinColumn(name = "Trainer_id", nullable = true, updatable = false) })
 	@JsonIgnore

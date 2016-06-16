@@ -28,7 +28,6 @@ angular.module('courseApp.navigationControllers', []).controller(
 					$scope.authenticated = false;
 					callback && callback(false);
 				});
-
 			}
 
 			authenticate();
@@ -59,12 +58,5 @@ angular.module('courseApp.navigationControllers', []).controller(
 
 		}).controller('home', function($http) {
 	var self = this;
-/*
- * $http.get('/resource/').then(function(response) { self.greeting =
- * response.data; })
- */
-			
-			
-			
 			
 		});

@@ -17,8 +17,6 @@ public class UserDaoImpl implements IUserDaoCustom {
 
 	@Override
 	public User findUserByLogin(String login) {
-		
-		
 		return null;
 	}
 

@@ -1,10 +1,19 @@
 package by.kochergin.app.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +28,9 @@ import by.kochergin.app.domain.Parent;
 public class ChildService extends GenericService<Child, Integer, IChildDao> {
 	@Autowired
 	private IChildDao dao;
+	
+	@PersistenceContext
+	private EntityManager em;
 
 	@Autowired
 	private IParentDao parentDao;
@@ -37,6 +49,17 @@ public class ChildService extends GenericService<Child, Integer, IChildDao> {
 		entity.setParent(parent);
 		refreshCourses(entity);
 		return super.create(entity);
+	}
+	
+	@Override
+	public void delete(Integer id) {
+		Child child = dao.findOne(id);
+		if(child != null){
+			child.getAttendencies().clear();
+			child.getCourses().clear();
+			child.getPayments().clear();
+			dao.delete(child);
+		}
 	}
 
 	@Override

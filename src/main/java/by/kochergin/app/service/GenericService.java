@@ -24,6 +24,10 @@ public class GenericService<T, ID extends Serializable, DAO extends CrudReposito
 	public void delete(ID id) {
 		dao.delete(id);
 	}
+	
+	public void delete(T entity) {
+		dao.delete(entity);
+	}
 
 	public List<T> getAll() {
 		return (List<T>) dao.findAll();
