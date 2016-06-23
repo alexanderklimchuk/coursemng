@@ -36,23 +36,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		/*
-		 * http.httpBasic().and().authorizeRequests().antMatchers("/").access(
-		 * "hasRole('ROLE_ADMIN')").anyRequest().permitAll().and().formLogin().
-		 * loginPage("/login").usernameParameter("username")
-		 * .passwordParameter("password").and().logout().logoutSuccessUrl(
-		 * "/login?logout").and().exceptionHandling().accessDeniedPage("/403").
-		 * and().csrf();
-		 */
+/*		http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/", "/**").authenticated().and().csrf()
+				.csrfTokenRepository(csrfTokenRepository()).and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);*/
+		
+		// http.authorizeRequests().antMatchers("/login*").permitAll();
 
-		// http.httpBasic().and().authorizeRequests().antMatchers("/index.html",
-		// "/home.html", "/login.html", "/",
-		// "/**").permitAll().anyRequest().authenticated().and().csrf()
-		// .csrfTokenRepository(csrfTokenRepository()).and().addFilterAfter(csrfHeaderFilter(),
-		// CsrfFilter.class);
+		http.httpBasic().and().authorizeRequests().antMatchers("/index.html").permitAll().and().authorizeRequests().antMatchers("/admin.html", "/admin.html/**","/userpanel.html","/userpanel.html/**").authenticated().and()
+				.csrf().csrfTokenRepository(csrfTokenRepository()).and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
+		
 
-		http.httpBasic().and().authorizeRequests().antMatchers("/index.html", "/home.html", "/login.html", "/", "/**").authenticated().and().csrf()
-				.csrfTokenRepository(csrfTokenRepository()).and().addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
 	}
 
 	private Filter csrfHeaderFilter() {

@@ -1,0 +1,16 @@
+<head lang="en">
+<meta charset="utf-8">
+</head>
+
+<table class="table courses">
+	<tr>
+		<td><h3>Курсы</h3></td>
+		<td></td>
+	</tr>
+	<tr ng-repeat="course in courses">
+		<td>{{course.name}}</td>
+		<td><a class="btn btn-primary"
+			ui-sref="viewCourse({id:course.id})">Просмотр</a>
+		</td>
+	</tr>
+</table>

@@ -12,3 +12,22 @@
 a.nodecoration{
     text-decoration:none;
 }
+
+.button {
+    display: inline;
+    width: 400px;
+    height: 100px;
+    background: #2965a8;
+    padding: 50px;
+    text-align: center;
+    text-shadow: gray;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}
+.system-name {
+	text-align: center;
+	color: white;
+	font-size: 75px;
+}

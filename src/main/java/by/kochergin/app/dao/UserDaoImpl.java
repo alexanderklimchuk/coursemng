@@ -17,7 +17,8 @@ public class UserDaoImpl implements IUserDaoCustom {
 
 	@Override
 	public User findUserByLogin(String login) {
-		return null;
+
+		return (User) em.createQuery("SELECT c FROM User c WHERE c.login LIKE ?1").setParameter(1, login).getSingleResult();
 	}
 
 }

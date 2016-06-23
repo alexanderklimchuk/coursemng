@@ -13,9 +13,12 @@ public class UserService {
 	
 	public User registerNewUser(User user)
 	{
-		
-		
 		return dao.save(user);
+	}
+	
+	
+	public User getUserByName(String username){
+		return dao.findUserByLogin(username);
 	}
 
 }

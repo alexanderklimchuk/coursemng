@@ -1,0 +1,41 @@
+<head lang="en">
+<meta charset="utf-8">
+</head>
+<table class="table trainertable">
+	<tr>
+		<td><h3>Данные преподавателя</h3></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Фамилия</td>
+		<td>{{trainer.lastname}}</td>
+	</tr>
+
+	<tr>
+		<td>Имя</td>
+		<td>{{trainer.firstname}}</td>
+	</tr>
+	<tr>
+		<td>Отчество</td>
+		<td>{{trainer.patronomic}}</td>
+	</tr>
+	<tr>
+		<td>Дата рождения</td>
+		<td>{{trainer.dob | date:'dd-MM-yyyy'}}</td>
+	</tr>
+	<tr>
+		<td>Адрес</td>
+		<td>{{trainer.address}}</td>
+	</tr>
+	<tr>
+		<td>Образование</td>
+		<td>{{trainer.education}}</td>
+	</tr>
+</table>
+<h4>Курсы:</h4>
+<table class="table coursetable">
+	<tr ng-repeat="course in trainer.courses">
+		<td>{{course.name}}</td>
+		<td><a class="btn btn-primary" ui-sref="viewCourse({id:course.id})">Просмотр</a></td>
+	</tr>
+</table>
